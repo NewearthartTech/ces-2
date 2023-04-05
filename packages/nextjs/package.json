@@ -11,7 +11,7 @@
         "format": "prettier --write . '!(node_module|.next|contracts)/**/*'",
         "check-types": "tsc --noEmit --incremental",
         "vercel": "vercel",
-        "vercel-build": "prisma generate && prisma migrate deploy && next build",
+        "vercel-build": "npx prisma generate && prisma migrate deploy && next build",
         "prisma:generate": "prisma generate",
         "vercel:yolo": "vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true"
     },
