@@ -813,6 +813,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/react@npm:^1.7.13":
+  version: 1.7.13
+  resolution: "@headlessui/react@npm:1.7.13"
+  dependencies:
+    client-only: ^0.0.1
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: 132e5fce86978b9a6fd9d669fb556acec783debcd8f510c99226b3b3229dad50a13aeed69fc9af66465fc7029487ecfc46e6226f14218b760d5a309e08c0d059
+  languageName: node
+  linkType: hard
+
 "@heroicons/react@npm:^2.0.11":
   version: 2.0.11
   resolution: "@heroicons/react@npm:2.0.11"
@@ -1664,6 +1676,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/client@npm:^4.12.0":
+  version: 4.12.0
+  resolution: "@prisma/client@npm:4.12.0"
+  dependencies:
+    "@prisma/engines-version": 4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7
+  peerDependencies:
+    prisma: "*"
+  peerDependenciesMeta:
+    prisma:
+      optional: true
+  checksum: bbd17500ee218a71e765a75b649c56bc0da1903e63d69d716b6a0e6995c8e1cc5265423ba1518a789c3e71b91d93e7937180db2d107e426bd4ad2f51998240f0
+  languageName: node
+  linkType: hard
+
+"@prisma/engines-version@npm:4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7":
+  version: 4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7
+  resolution: "@prisma/engines-version@npm:4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7"
+  checksum: 54615d6982db9c50eed6132ad7ab3f32ef93f64d36b7f932b0d6109cd54028ea459293833e48b849a5dd968d934bb3cfb275b9a9172934032f95355d6f663dcf
+  languageName: node
+  linkType: hard
+
 "@rainbow-me/rainbowkit@npm:^0.11.0":
   version: 0.11.0
   resolution: "@rainbow-me/rainbowkit@npm:0.11.0"
@@ -1812,7 +1845,9 @@ __metadata:
   dependencies:
     "@ethersproject/networks": ^5.7.1
     "@ethersproject/web": ^5.7.1
+    "@headlessui/react": ^1.7.13
     "@heroicons/react": ^2.0.11
+    "@prisma/client": ^4.12.0
     "@rainbow-me/rainbowkit": ^0.11.0
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
     "@types/node": ^17.0.35
@@ -1844,6 +1879,7 @@ __metadata:
     usehooks-ts: ^2.7.2
     vercel: ^28.15.1
     wagmi: ^0.11.6
+    yup: ^1.0.2
     zustand: ^4.1.2
   languageName: unknown
   linkType: soft
@@ -5059,7 +5095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"client-only@npm:0.0.1":
+"client-only@npm:0.0.1, client-only@npm:^0.0.1":
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
   checksum: 0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
@@ -10974,6 +11010,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"property-expr@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "property-expr@npm:2.0.5"
+  checksum: 4ebe82ce45aaf1527e96e2ab84d75d25217167ec3ff6378cf83a84fb4abc746e7c65768a79d275881602ae82f168f9a6dfaa7f5e331d0fcc83d692770bcce5f1
+  languageName: node
+  linkType: hard
+
 "proxy-compare@npm:2.4.0":
   version: 2.4.0
   resolution: "proxy-compare@npm:2.4.0"
@@ -12666,6 +12709,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-case@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tiny-case@npm:1.0.3"
+  checksum: 3f7a30c39d5b0e1bc097b0b271bec14eb5b836093db034f35a0de26c14422380b50dc12bfd37498cf35b192f5df06f28a710712c87ead68872a9e37ad6f6049d
+  languageName: node
+  linkType: hard
+
 "tiny-glob@npm:^0.2.9":
   version: 0.2.9
   resolution: "tiny-glob@npm:0.2.9"
@@ -12733,6 +12783,13 @@ __metadata:
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
   checksum: 952c29e2a85d7123239b5cfdd889a0dde47ab0497f0913d70588f19c53f7e0b5327c95f4651e413c74b785147f9637b17410ac8c846d5d4a20a5a33eb6dc3a45
+  languageName: node
+  linkType: hard
+
+"toposort@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "toposort@npm:2.0.2"
+  checksum: d64c74b570391c9432873f48e231b439ee56bc49f7cb9780b505cfdf5cb832f808d0bae072515d93834dd6bceca5bb34448b5b4b408335e4d4716eaf68195dcb
   languageName: node
   linkType: hard
 
@@ -12962,6 +13019,13 @@ __metadata:
   version: 0.7.1
   resolution: "type-fest@npm:0.7.1"
   checksum: 5b1b113529d59949d97b76977d545989ddc11b81bb0c766b6d2ccc65473cb4b4a5c7d24f5be2c2bb2de302a5d7a13c1732ea1d34c8c59b7e0ec1f890cf7fc424
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^2.19.0":
+  version: 2.19.0
+  resolution: "type-fest@npm:2.19.0"
+  checksum: a4ef07ece297c9fba78fc1bd6d85dff4472fe043ede98bd4710d2615d15776902b595abf62bd78339ed6278f021235fb28a96361f8be86ed754f778973a0d278
   languageName: node
   linkType: hard
 
@@ -13782,6 +13846,18 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"yup@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "yup@npm:1.0.2"
+  dependencies:
+    property-expr: ^2.0.5
+    tiny-case: ^1.0.3
+    toposort: ^2.0.2
+    type-fest: ^2.19.0
+  checksum: 1cb9c490853739aa0c576c87a81008dd3612985dd2da5ff6127b77640465fa906bb47ed30a7c97824b4a3f525010b2d7f614ebbd442b02e16433675c4d66f0b8
   languageName: node
   linkType: hard
 

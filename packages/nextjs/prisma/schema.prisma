@@ -1,0 +1,41 @@
+datasource mongo {
+    provider = "mongodb"
+    url      = env("MONGODB_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model WorkPosting {
+    id                String      @id @default(auto()) @map("_id") @mongo.ObjectId
+    title             String?
+    link              String?
+    discordInviteLink String?
+    image             String?
+    price             Float?
+    description       String?
+    walletAddress     String?
+    applicants        Applicant[]
+    Approval          Approval[]
+}
+
+model Applicant {
+    id            String       @id @default(auto()) @map("_id") @mongo.ObjectId
+    workPosting   WorkPosting? @relation(fields: [workPostingId], references: [id])
+    workPostingId String       @mongo.ObjectId
+    walletAddress String?
+    description   String?
+    userLink      String?
+    approvals     Approval[]
+}
+
+model Approval {
+    id                     String       @id @default(auto()) @map("_id") @mongo.ObjectId
+    workPosting            WorkPosting? @relation(fields: [workpostingId], references: [id])
+    workpostingId          String       @mongo.ObjectId
+    applicant              Applicant?   @relation(fields: [applicantId], references: [id])
+    applicantId            String       @mongo.ObjectId
+    applicantWalletAddress String?
+    creatorWalletAddress   String?
+}

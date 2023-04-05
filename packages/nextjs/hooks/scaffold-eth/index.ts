@@ -9,5 +9,4 @@ export * from "./useOutsideClick";
 export * from "./useScaffoldContractRead";
 export * from "./useScaffoldContractWrite";
 export * from "./useScaffoldEventSubscriber";
-export * from "./useScaffoldEventHistory";
 export * from "./useTransactor";
