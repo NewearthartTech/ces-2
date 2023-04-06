@@ -4,12 +4,12 @@
 const nextConfig = {
   reactStrictMode: true,
   typescript: {
-    // ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
+    // ignoreBuildErrors: true,
   },
   eslint: {
-    // ignoreDuringBuilds: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
+    // ignoreDuringBuilds: true,
   },
 };
 
