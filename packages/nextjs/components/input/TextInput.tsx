@@ -16,7 +16,7 @@ const TextInput = ({
   helperText?: string;
 }) => {
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full">
       {label && (
         <label className="label">
           <span className="label-text">{label}</span>
@@ -27,11 +27,11 @@ const TextInput = ({
         value={value}
         onChange={onChange ? onChange : undefined}
         placeholder={placeholder}
-        className="input input-bordered w-full max-w-xs"
+        className="input input-bordered w-full"
       />
       <label className="label">
         {error && <span className="label-text-alt text-red-500">{error}</span>}
-        {!error && helperText && <span className="label-text-alt ">{helperText}</span>}
+        {!error && helperText && <span className="label-text-alt text-xs">{helperText}</span>}
       </label>
     </div>
   );

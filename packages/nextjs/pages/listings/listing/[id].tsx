@@ -1,6 +1,7 @@
 import React from "react";
 import { Applicant, PrismaClient, WorkPosting } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import ApplicantCard from "~~/components/applicants/ApplicantCard";
 
 const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; applicants: Applicant[] }) => {
   if (!listing?.id) return <h2 className="p-4 mx-auto">Listing not found</h2>;
@@ -21,7 +22,7 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
         {listing.discordServerLink && (
           <a
             href={listing.discordServerLink}
-            className="btn btn-primary mr-4"
+            className="btn btn-secondary mr-4"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -37,10 +38,9 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
           <h2 className="text-2xl font-bold mb-4">Applicants</h2>
           {applicants.length === 0 && <p>No applicants yet.</p>}
           {applicants.map(applicant => (
-            <div key={applicant.id} className="mb-4">
-              <p className="font-bold">{applicant.walletAddress}</p>
-              <p>{applicant.description}</p>
-            </div>
+            <React.Fragment key={applicant.id}>
+              <ApplicantCard application={applicant} />
+            </React.Fragment>
           ))}
         </div>
       </div>

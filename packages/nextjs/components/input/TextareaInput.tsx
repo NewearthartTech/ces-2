@@ -16,7 +16,7 @@ const TextareaInput = ({
   helperText?: string;
 }) => {
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full">
       {label && (
         <label className="label">
           <span className="label-text">{label}</span>

@@ -12,12 +12,7 @@ const validationSchema = yup.object().shape({
   price: yup.number().positive("Price must be greater than 0").required("Price is required"),
   description: yup.string().min(10).required("Description must have at least 10 characters"),
   link: yup.string().url(),
-  discordServerLink: yup
-    .string()
-    .matches(
-      /^(?:https?:\/\/)?(?:www\.)?(?:discord\.(?:gg|com)\/invite|discordapp\.com\/invite)\/([a-zA-Z0-9-]+)$/,
-      "Must be a valid Discord invite link",
-    ),
+  discordServerLink: yup.string().optional().url("Must be a valid Discord invite link"),
 });
 
 export const ListingForm = ({
@@ -36,7 +31,7 @@ export const ListingForm = ({
       link: "",
       discordServerLink: "",
       image: "",
-      price: 0,
+      price: null,
       description: "",
       walletAddress: "",
     },
@@ -101,7 +96,7 @@ export const ListingForm = ({
         />
         <h2 className="text-lg font-semibold my-2">Price Offering</h2>
         <NumberInput
-          value={values.price ?? 0}
+          value={values.price ?? undefined}
           onChange={handleChange("price")}
           error={errors.price}
           suggestion="in $"
@@ -121,7 +116,7 @@ export const ListingForm = ({
           helperText={errors.discordServerLink}
           value={values.discordServerLink ?? ""}
           onChange={handleChange("discordServerLink")}
-          placeholder="https://"
+          placeholder="https://discord.gg/XYZxx"
         />
         <h2 className="text-lg font-semibold my-2">Post Description</h2>
         <TextareaInput

@@ -60,7 +60,13 @@ export async function getMyWorkAndApplicantsByWorkPostingId(
   const body = await r.json();
   return body;
 }
-export async function createApplicant(applicant: Applicant): Promise<Applicant> {
+export async function createApplicant(applicant: {
+  id?: string;
+  workPostingId: string;
+  walletAddress: string | null;
+  description: string | null;
+  userLink: string | null;
+}): Promise<Applicant> {
   const r = await fetch(`/api/applicants`, {
     method: "POST",
     headers: {
@@ -78,7 +84,13 @@ export async function getMyApplications(address: string): Promise<Applicant[]> {
 }
 
 // Work approvals
-export async function createApproval(approval: Approval): Promise<Approval> {
+export async function createApproval(approval: {
+  id?: string;
+  workpostingId: string;
+  applicantId: string;
+  applicantWalletAddress: string | null;
+  creatorWalletAddress: string | null;
+}): Promise<Approval> {
   const r = await fetch(`/api/approvals`, {
     method: "POST",
     headers: {

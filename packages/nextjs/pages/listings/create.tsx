@@ -21,7 +21,7 @@ const CreateListing = () => {
       };
       const generatedWorkPosting = await createWorkPosting(newListing);
       setGeneratedLink(
-        `${process.env.NODE_ENV === "development" ? "http://" : "https://"}${window.location.host}/listing/${
+        `${process.env.NODE_ENV === "development" ? "http://" : "https://"}${window.location.host}/listings/listing/${
           generatedWorkPosting.id
         }`,
       );
