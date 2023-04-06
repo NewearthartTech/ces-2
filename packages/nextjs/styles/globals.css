@@ -30,3 +30,6 @@ p {
 .btn.btn-ghost {
   @apply shadow-none;
 }
+.image-input {
+  display: none;
+}

@@ -10,7 +10,7 @@ const TextareaInput = ({
 }: {
   label?: string;
   value?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   error?: string;
   placeholder?: string;
   helperText?: string;
@@ -22,16 +22,15 @@ const TextareaInput = ({
           <span className="label-text">{label}</span>
         </label>
       )}
-      <input
-        type="text"
+      <textarea
         value={value}
         onChange={onChange ? onChange : undefined}
         placeholder={placeholder}
-        className="textarea textarea-primary w-full"
+        className="textarea textarea-primary w-full rounded-md"
       />
       <label className="label">
-        {error && <span className="label-text-alt text-danger">{error}</span>}
-        {!error && helperText && <span className="label-text-alt text-danger">{helperText}</span>}
+        {error && <span className="label-text-alt text-red-500">{error}</span>}
+        {!error && helperText && <span className="label-text-alt">{helperText}</span>}
       </label>
     </div>
   );

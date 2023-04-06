@@ -29,14 +29,11 @@ const UploadImage = ({ id, onChange, error, helperText }: Props) => {
         // eslint-disable-next-line @next/next/no-img-element
         <img style={{ maxWidth: "300px", margin: "0 auto", borderRadius: "10px" }} src={previewUrl} alt="Preview" />
       )}
-      <input
-        accept="image/*"
-        id={id}
-        type="file"
-        onChange={handleFileChange}
-        className="file-input file-input-bordered file-input-primary w-full max-w-xs"
-      />
-      {error && <p className="mx-2">{helperText}</p>}
+      <input accept="image/*" className="image-input" id={id} type="file" onChange={handleFileChange} />
+      <label htmlFor={id}>
+        <span className="btn btn-accent">{previewUrl ? "Change Image" : " Upload Project Image"}</span>
+      </label>
+      {error && <p className="mx-2 text-red-500">{helperText}</p>}
     </>
   );
 };

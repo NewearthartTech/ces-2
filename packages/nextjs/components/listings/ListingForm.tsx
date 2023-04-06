@@ -34,7 +34,7 @@ export const ListingForm = ({
       id: "",
       title: "",
       link: "",
-      discordInviteLink: "",
+      discordServerLink: "",
       image: "",
       price: 0,
       description: "",
@@ -44,16 +44,17 @@ export const ListingForm = ({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (fieldName: keyof WorkPosting) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    let cleanedValue = value;
+  const handleChange =
+    (fieldName: keyof WorkPosting) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = event.target;
+      let cleanedValue = value;
 
-    if (name === "price") {
-      cleanedValue = value.replace(/[^0-9.]/g, "");
-    }
+      if (name === "price") {
+        cleanedValue = value.replace(/[^0-9.]/g, "");
+      }
 
-    setValues(prevValues => ({ ...prevValues, [fieldName]: cleanedValue }));
-  };
+      setValues(prevValues => ({ ...prevValues, [fieldName]: cleanedValue }));
+    };
   const handleFileChange = (fieldName: keyof WorkPosting) => (file: File | null) => {
     if (file) {
       const reader = new FileReader();
@@ -87,7 +88,7 @@ export const ListingForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="w-full max-w-3xl">
       <div className="flex flex-col space-y-2">
         <h2 className="text-lg font-semibold my-2">Post title</h2>
         <TextInput value={values.title ?? ""} onChange={handleChange("title")} error={errors.title} />
@@ -114,15 +115,22 @@ export const ListingForm = ({
           onChange={handleChange("link")}
           placeholder="https://"
         />
+        <h2 className="text-lg font-semibold my-2">Discord invite link</h2>
+        <TextInput
+          error={errors.discordServerLink}
+          helperText={errors.discordServerLink}
+          value={values.discordServerLink ?? ""}
+          onChange={handleChange("discordServerLink")}
+          placeholder="https://"
+        />
         <h2 className="text-lg font-semibold my-2">Post Description</h2>
         <TextareaInput
-          label="Description"
           value={values.description ?? ""}
           onChange={handleChange("description")}
           error={errors.description}
           helperText={errors.description}
         />
-        <button disabled={isLoading} className={`btn btn-outline btn-primary ${isLoading ? "loading" : ""}`}>
+        <button disabled={isLoading} className={`btn btn-outline btn-accent ${isLoading ? "loading" : ""}`}>
           {submitLabel}
         </button>
       </div>

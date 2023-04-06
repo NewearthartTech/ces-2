@@ -11,7 +11,7 @@ model WorkPosting {
     id                String      @id @default(auto()) @map("_id") @mongo.ObjectId
     title             String?
     link              String?
-    discordInviteLink String?
+    discordServerLink String?
     image             String?
     price             Float?
     description       String?

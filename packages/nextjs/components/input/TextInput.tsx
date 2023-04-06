@@ -30,8 +30,8 @@ const TextInput = ({
         className="input input-bordered w-full max-w-xs"
       />
       <label className="label">
-        {error && <span className="label-text-alt text-danger">{error}</span>}
-        {!error && helperText && <span className="label-text-alt text-danger">{helperText}</span>}
+        {error && <span className="label-text-alt text-red-500">{error}</span>}
+        {!error && helperText && <span className="label-text-alt ">{helperText}</span>}
       </label>
     </div>
   );

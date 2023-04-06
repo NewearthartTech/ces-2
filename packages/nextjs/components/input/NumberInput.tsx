@@ -45,8 +45,8 @@ const NumberInput = ({
         className="input input-bordered w-full max-w-xs"
       />
       <label className="label">
-        {error && <span className="label-text-alt text-danger">{error}</span>}
-        {!error && suggestion && <span className="label-text-alt text-danger">{suggestion}</span>}
+        {error && <span className="label-text-alt text-red-500">{error}</span>}
+        {!error && suggestion && <span className="label-text-alt ">{suggestion}</span>}
       </label>
     </div>
   );

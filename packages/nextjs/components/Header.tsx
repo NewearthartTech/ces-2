@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon, QueueListIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, PlusCircleIcon, QueueListIcon, SparklesIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -55,6 +55,12 @@ export const Header = () => {
         <NavLink href="/listings">
           <QueueListIcon className="h-4 w-4" />
           Listings
+        </NavLink>
+      </li>
+      <li>
+        <NavLink href="/listings/create">
+          <PlusCircleIcon className="h-4 w-4" />
+          Create Listing
         </NavLink>
       </li>
     </>
