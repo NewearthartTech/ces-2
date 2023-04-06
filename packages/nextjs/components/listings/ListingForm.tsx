@@ -67,7 +67,6 @@ export const ListingForm = ({
       .then(async () => {
         setIsLoading(true);
         setErrors({});
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await onSubmit(values!);
       })
       .catch(error => {
