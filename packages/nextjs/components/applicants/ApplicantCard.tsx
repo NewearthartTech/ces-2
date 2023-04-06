@@ -11,10 +11,12 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
   const [applicationApproval, setApplicationApproval] = useState<Approval>();
   const [approvalLoading, setApprovalLoading] = useState<boolean>(false);
   const getApproval = async () => {
-    const approval = await getApprovalByApplicantId(application?.id ?? "");
-    if (approval.id) {
-      setApplicationApproval(approval);
-    }
+    try {
+      const approval = await getApprovalByApplicantId(application?.id ?? "");
+      if (approval.id) {
+        setApplicationApproval(approval);
+      }
+    } catch {}
   };
   const generateApproval = async () => {
     try {
@@ -36,6 +38,7 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
     (async () => {
       const workPosting = await getWorkPostingById(application?.workPostingId ?? "");
       setIsCreator(workPosting.walletAddress === ethAddress);
+      console.log(isCreator);
       getApproval();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

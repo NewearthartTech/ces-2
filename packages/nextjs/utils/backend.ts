@@ -14,7 +14,7 @@ export async function getMyListings(address: string): Promise<WorkPosting[]> {
   return body;
 }
 export async function getWorkPostingById(id: string): Promise<WorkPosting> {
-  const r = await fetch(`/api/workpostings/${id}`);
+  const r = await fetch(`/api/workpostings/workposting/${id}`);
   const body = await r.json();
   return body;
 }
@@ -102,14 +102,14 @@ export async function createApproval(approval: {
   return body;
 }
 
-export async function getMyApprovals(address: string): Promise<Approval[]> {
+/* export async function getMyApprovals(address: string): Promise<Approval[]> {
   const r = await fetch(`/api/approvals/myapprovals/${address}`);
   const body = await r.json();
   return body;
-}
+} */
 
 export async function getApprovalById(id: string): Promise<Approval> {
-  const r = await fetch(`/api/approvals/${id}`);
+  const r = await fetch(`/api/approvals/approval/${id}`);
   const body = await r.json();
   return body;
 }
