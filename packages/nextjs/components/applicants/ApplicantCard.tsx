@@ -80,6 +80,7 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
       application.walletAddress!,
       ethers.utils.parseEther(workListing?.price?.toString() ?? "0"),
       false,
+      { gasLimit: BigNumber.from(5000000) },
     );
     await tx?.wait();
   };

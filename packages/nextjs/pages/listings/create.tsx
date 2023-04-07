@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { WorkPosting } from "@prisma/client";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { useAccount, useContract, useSigner } from "wagmi";
 import { ListingForm } from "~~/components/listings/ListingForm";
 import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
@@ -21,15 +21,17 @@ const CreateListing = () => {
     try {
       const tx = await contract?.CreateWorkListing({
         value: ethers.utils.parseEther(listing.price?.toString() ?? "0"),
+        gasLimit: BigNumber.from(5000000),
       });
       await tx?.wait();
       const latestId = await contract?.getLastRewardId();
+      const instanceId = latestId?.toNumber() ?? 1;
       const newListing = {
         ...listing,
         id: undefined,
         price: Number(listing.price),
         walletAddress: ethAddress ?? "",
-        contractBountyId: latestId?.toNumber() ?? 1 - 1,
+        contractBountyId: instanceId - 1,
       };
       const generatedWorkPosting = await createWorkPosting(newListing);
       setGeneratedLink(
