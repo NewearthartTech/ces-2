@@ -3,7 +3,7 @@ import { Applicant, Approval, WorkPosting } from "@prisma/client";
 import { BigNumber, ethers } from "ethers";
 import toast from "react-hot-toast";
 import { useAccount, useContract, useSigner } from "wagmi";
-import { useDeployedContractInfo, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
+import { useDeployedContractInfo, useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 import {
   createApproval,
   getApprovalByApplicantId,
@@ -25,6 +25,11 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
     address: nowOrLaterContract?.address,
     abi: nowOrLaterContract?.abi,
     signerOrProvider: signer,
+  });
+  const { data: listingAmount } = useScaffoldContractRead({
+    contractName: "NowOrLater",
+    functionName: "getWorkListingAmount",
+    args: [BigNumber.from(workListing?.contractBountyId ?? 0)],
   });
   const updatePaymentStat = async () => {
     const r = await successApplicantPayment(application);
@@ -115,7 +120,7 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
               </button>
             ) : (
               <button
-                disabled={approvalLoading}
+                disabled={approvalLoading || listingAmount === BigNumber.from(0)}
                 onClick={() => sendPayment()}
                 className={`btn btn-primary ${approvalLoading ? "loading" : ""}`}
               >

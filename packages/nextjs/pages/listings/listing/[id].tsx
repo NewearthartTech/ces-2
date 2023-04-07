@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { Applicant, PrismaClient, WorkPosting } from "@prisma/client";
+import { BigNumber } from "ethers";
 import { GetServerSideProps } from "next";
 import { useAccount } from "wagmi";
 import ApplicantCard from "~~/components/applicants/ApplicantCard";
 import ApplicantModal from "~~/components/applicants/ApplicantModal";
+import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; applicants: Applicant[] }) => {
   const [visibleApplication, setVisibleApplication] = useState<boolean>();
   const { address: ethAddress } = useAccount();
+  const { data: listingAmount } = useScaffoldContractRead({
+    contractName: "NowOrLater",
+    functionName: "getWorkListingAmount",
+    args: [BigNumber.from(listing?.contractBountyId ?? 0)],
+  });
   if (!listing?.id) return <h2 className="p-4 mx-auto">Listing not found</h2>;
   return (
     <div className="container mx-auto px-4 py-8">
@@ -44,6 +51,9 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
           </button>
         )}
         <div className="mt-8">
+          {listingAmount === BigNumber.from(0) && (
+            <div className="badge badge-warning gap-2">Work Finished, bounty paid</div>
+          )}
           <h2 className="text-2xl font-bold mb-4">Applicants</h2>
           {applicants.length === 0 && <p>No applicants yet.</p>}
           {applicants.map(applicant => (
