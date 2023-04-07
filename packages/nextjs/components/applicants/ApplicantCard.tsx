@@ -121,7 +121,7 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
               </button>
             ) : (
               <button
-                disabled={approvalLoading || listingAmount === BigNumber.from(0)}
+                disabled={approvalLoading || listingAmount === BigNumber.from(0) || payed}
                 onClick={() => sendPayment()}
                 className={`btn btn-primary ${approvalLoading ? "loading" : ""}`}
               >
