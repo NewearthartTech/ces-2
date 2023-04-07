@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import TextInput from "../input/TextInput";
 import TextareaInput from "../input/TextareaInput";
+import { RainbowKitCustomConnectButton } from "../scaffold-eth/RainbowKitCustomConnectButton";
 import { Applicant } from "@prisma/client";
+import { useAccount } from "wagmi";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
   description: yup.string().min(10).required("Information must have at least 10 characters"),
-  userLink: yup.string().url("Please enter an valid link"),
+  userLink: yup.string().url("Please enter an valid link").optional(),
 });
 const ApplicantForm = ({
   onSubmit,
@@ -23,12 +25,12 @@ const ApplicantForm = ({
       workPostingId: "",
       walletAddress: "",
       description: null,
-      userLink: null,
+      userLink: "",
     },
   );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const { address: ethAddress } = useAccount();
   const handleChange =
     (fieldName: keyof Applicant) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { value } = event.target;
@@ -85,9 +87,15 @@ const ApplicantForm = ({
           error={errors.userLink}
           helperText={errors.userLink ?? "Optional"}
         />
-        <button disabled={isLoading} className={`btn btn-outline mt-4 btn-accent ${isLoading ? "loading" : ""}`}>
-          {submitLabel}
-        </button>
+        {!ethAddress ? (
+          <div className="mx-auto">
+            <RainbowKitCustomConnectButton />
+          </div>
+        ) : (
+          <button disabled={isLoading} className={`btn btn-outline mt-4 btn-accent ${isLoading ? "loading" : ""}`}>
+            {submitLabel}
+          </button>
+        )}
       </div>
     </form>
   );

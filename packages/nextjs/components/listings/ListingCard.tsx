@@ -11,7 +11,7 @@ const ListingCard = ({ listing }: { listing: WorkPosting }) => {
   const { address: ethAddress } = useAccount();
 
   return (
-    <div className="card w-84 bg-base-100 shadow-xl m-2">
+    <div className="card w-84 bg-base-100 shadow-xl m-2 max-h-94">
       {listing.image && (
         <figure>
           <img src={listing.image} alt="" />

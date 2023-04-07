@@ -12,7 +12,7 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
           <figure>
             {
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={listing.image} alt="" />
+              <img src={listing.image} alt="" className="max-h-96" />
             }
           </figure>
         )}
