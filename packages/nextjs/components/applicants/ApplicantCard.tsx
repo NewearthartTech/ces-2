@@ -33,7 +33,7 @@ const ApplicantCard = ({ application }: { application: Applicant }) => {
   useScaffoldEventSubscriber({
     contractName: "NowOrLater",
     eventName: "Paid_Applicant",
-    listener: async (id, applicantAddress, _amount, _isPartialPayment) => {
+    listener: async (id: any, applicantAddress: any, _amount: any, _isPartialPayment: any) => {
       if (applicantAddress === application.walletAddress && id.toNumber() === workListing?.contractBountyId) {
         toast.success("Applicant paid successfully");
 
