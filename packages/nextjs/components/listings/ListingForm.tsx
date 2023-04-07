@@ -34,6 +34,7 @@ export const ListingForm = ({
       price: null,
       description: "",
       walletAddress: "",
+      contractBountyId: 0,
     },
   );
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -67,6 +68,7 @@ export const ListingForm = ({
       .then(async () => {
         setIsLoading(true);
         setErrors({});
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await onSubmit(values!);
       })
       .catch(error => {

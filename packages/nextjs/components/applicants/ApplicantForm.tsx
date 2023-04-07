@@ -65,6 +65,7 @@ const ApplicantForm = ({
               walletAddress: "",
               description: null,
               userLink: null,
+              paid: false,
             });
           }, 500);
         }
