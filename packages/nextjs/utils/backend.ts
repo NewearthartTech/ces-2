@@ -32,6 +32,7 @@ export async function createWorkPosting(workPosting: {
   price: number | null;
   description: string | null;
   walletAddress: string | null;
+  contractBountyId: number;
 }): Promise<WorkPosting> {
   const r = await fetch(`/api/workpostings`, {
     method: "post",
@@ -74,6 +75,11 @@ export async function createApplicant(applicant: {
     },
     body: JSON.stringify(applicant),
   });
+  const body = await r.json();
+  return body;
+}
+export async function successApplicantPayment(applicant: Applicant): Promise<Applicant> {
+  const r = await fetch(`/api/applicants/finish/${applicant.id}`);
   const body = await r.json();
   return body;
 }

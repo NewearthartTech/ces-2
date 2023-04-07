@@ -16,6 +16,7 @@ model WorkPosting {
     price             Float?
     description       String?
     walletAddress     String?
+    contractBountyId  Int
     applicants        Applicant[]
     Approval          Approval[]
 }
@@ -27,6 +28,7 @@ model Applicant {
     walletAddress String?
     description   String?
     userLink      String?
+    paid          Boolean @default(false)
     approvals     Approval[]
 }
 

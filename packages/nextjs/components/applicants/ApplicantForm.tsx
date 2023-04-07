@@ -26,6 +26,7 @@ const ApplicantForm = ({
       walletAddress: "",
       description: null,
       userLink: "",
+      paid: false,
     },
   );
   const [errors, setErrors] = useState<Record<string, string>>({});

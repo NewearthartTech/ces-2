@@ -1,23 +1,35 @@
 import React, { useState } from "react";
 import { WorkPosting } from "@prisma/client";
-import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+import { useAccount, useContract, useSigner } from "wagmi";
 import { ListingForm } from "~~/components/listings/ListingForm";
+import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
 import { createWorkPosting } from "~~/utils/backend";
 
 const CreateListing = () => {
   const [generatedLink, setGeneratedLink] = useState<string>();
   const [failed, setFailed] = useState<boolean>();
   const { address: ethAddress } = useAccount();
+  const { data: nowOrLaterContract } = useDeployedContractInfo("NowOrLater");
+  const { data: signer } = useSigner();
+  const contract = useContract({
+    address: nowOrLaterContract?.address,
+    abi: nowOrLaterContract?.abi,
+    signerOrProvider: signer,
+  });
   const generateLink = async (listing: WorkPosting) => {
     try {
-      // TODO Add contract Bounty ID
-      // const contractBountyId = isMetamaskConnected && signer ? await postReward(signer, listing.price!) : 0;
+      const tx = await contract?.CreateWorkListing({
+        value: ethers.utils.parseEther(listing.price?.toString() ?? "0"),
+      });
+      await tx?.wait();
+      const latestId = await contract?.getLastRewardId();
       const newListing = {
         ...listing,
         id: undefined,
         price: Number(listing.price),
         walletAddress: ethAddress ?? "",
-        //contractRewardId,
+        contractBountyId: latestId?.toNumber() ?? 1 - 1,
       };
       const generatedWorkPosting = await createWorkPosting(newListing);
       setGeneratedLink(
