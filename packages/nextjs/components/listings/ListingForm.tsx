@@ -100,7 +100,7 @@ export const ListingForm = ({
           value={values.price ?? undefined}
           onChange={handleChange("price")}
           error={errors.price}
-          suggestion="in $"
+          suggestion="in MATIC"
           placeholder="12.6"
         />
         <h2 className="text-lg font-semibold my-2">Post Link</h2>

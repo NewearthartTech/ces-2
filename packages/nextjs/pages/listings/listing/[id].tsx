@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Applicant, PrismaClient, WorkPosting } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { useAccount } from "wagmi";
 import ApplicantCard from "~~/components/applicants/ApplicantCard";
+import ApplicantModal from "~~/components/applicants/ApplicantModal";
 
 const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; applicants: Applicant[] }) => {
+  const [visibleApplication, setVisibleApplication] = useState<boolean>();
+  const { address: ethAddress } = useAccount();
   if (!listing?.id) return <h2 className="p-4 mx-auto">Listing not found</h2>;
   return (
     <div className="container mx-auto px-4 py-8">
@@ -17,7 +21,7 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
           </figure>
         )}
         <h1 className="text-3xl font-bold mt-8 mb-4">{listing.title}</h1>
-        {listing.price && <p className="text-2xl font-bold mb-4">${listing.price}</p>}
+        {listing.price && <p className="text-2xl font-bold mb-4">{listing.price} MATIC</p>}
         <p className="text-lg mb-8">{listing.description}</p>
         {listing.discordServerLink && (
           <a
@@ -34,6 +38,11 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
             Visit Website
           </a>
         )}
+        {ethAddress !== listing.walletAddress && (
+          <button onClick={() => setVisibleApplication(true)} className="btn btn-primary">
+            Apply
+          </button>
+        )}
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4">Applicants</h2>
           {applicants.length === 0 && <p>No applicants yet.</p>}
@@ -44,6 +53,9 @@ const ListingPage = ({ listing, applicants }: { listing: WorkPosting | null; app
           ))}
         </div>
       </div>
+      {visibleApplication && listing.id && ethAddress !== listing.walletAddress && (
+        <ApplicantModal listingId={listing.id} isOpen={visibleApplication} setIsOpen={setVisibleApplication} />
+      )}
     </div>
   );
 };
